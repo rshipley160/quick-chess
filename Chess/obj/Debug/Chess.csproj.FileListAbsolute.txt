@@ -28,3 +28,6 @@ D:\Projects\Misc\Chess\Working\Chess\obj\Debug\Chess.Squar.resources
 D:\Projects\Misc\Chess\Working\Chess\obj\Debug\Chess.csproj.GenerateResource.Cache
 D:\Projects\Misc\Chess\Working\Chess\obj\Debug\Chess.exe
 D:\Projects\Misc\Chess\Working\Chess\obj\Debug\Chess.pdb
+C:\Users\XJL399\Source\Repos\quick-chess\Chess\bin\Debug\Chess.exe.config
+C:\Users\XJL399\Source\Repos\quick-chess\Chess\obj\Debug\Chess.exe
+C:\Users\XJL399\Source\Repos\quick-chess\Chess\obj\Debug\Chess.pdb
