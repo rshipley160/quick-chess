@@ -503,5 +503,73 @@ namespace Chess
                 ParentForm.EnableSaveMenu();
             }
 		}
-	}
+
+        public void NewDCGame()
+        {
+            ParentForm.ChessCaptureBar.Clear();
+            NewGame NewGameDlg = new NewGame();
+            NewGameDlg.ResourceFolderPath = ResourceFolder;
+            NewGameDlg.ShowDialog();
+
+            // Start the new game
+            if (NewGameDlg.bStartGame)
+            {
+                ChessGame = new Game();
+                ChessGame.setBoard(new DCBoard());
+
+                // Handle the events fired by the library
+                ChessGame.ComputerThinking += new ChessLibrary.Game.ChessComputerThinking(ComputerThinking);
+
+                ChessGame.Reset();  // Reset the game board
+                IsRunning = true;
+                LogCounter = 0;
+
+                ChessGame.WhitePlayer.Name = NewGameDlg.WhitePlayerName.Text;
+                ChessGame.BlackPlayer.Name = NewGameDlg.BlackPlayerName.Text;
+
+                // Start Human Vs. Computer Game
+                if (NewGameDlg.PlayersHvC.Checked)
+                {
+                    ChessGame.BlackPlayer.PlayerType = Player.Type.Computer;	// Set the black player as computer
+                    ChessGame.WhitePlayer.PlayerType = Player.Type.Human;	    // Set the white player as computer (as he has the first move)
+                }
+
+                // Both players are computer
+                if (NewGameDlg.PlayersCvC.Checked)
+                {
+                    ChessGame.BlackPlayer.PlayerType = Player.Type.Computer;    // Set the black player as computer
+                    ChessGame.WhitePlayer.PlayerType = Player.Type.Computer;    // Set the black player as computer
+                }
+
+                // Beginner Player
+                if (NewGameDlg.PlayerLevel1.Checked)
+                {
+                    ChessGame.WhitePlayer.TotalThinkTime = 4;   // set maximum thinking time
+                    ChessGame.BlackPlayer.TotalThinkTime = 4;   // set maximum thinking time
+                }
+
+                // Intermediate Player
+                if (NewGameDlg.PlayerLevel2.Checked)
+                {
+                    ChessGame.WhitePlayer.TotalThinkTime = 8;   // set maximum thinking time
+                    ChessGame.BlackPlayer.TotalThinkTime = 8;   // set maximum thinking time
+                }
+
+                // Chess Master Player
+                if (NewGameDlg.PlayerLevel3.Checked)
+                {
+                    ChessGame.WhitePlayer.TotalThinkTime = 20;  // set maximum thinking time
+                    ChessGame.BlackPlayer.TotalThinkTime = 20;  // set maximum thinking time
+                }
+
+                InitPlayers();
+                RedrawBoard();      // Make the chess board visible on screen
+                NextPlayerTurn();       // When the both players are computer this start the game 
+
+                // Let user save the game
+                ParentForm.EnableSaveMenu();
+            }
+        }
+
+    }
 }

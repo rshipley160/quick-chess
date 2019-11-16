@@ -54,7 +54,8 @@ namespace Chess
         private MenuItem mnuAbout;
         private MenuItem mnuSaveGame;
         private MenuItem mnuLoadGame;
-		private System.Windows.Forms.MenuItem mnuShowMoveHelp;
+        private MenuItem newDCGame;
+        private System.Windows.Forms.MenuItem mnuShowMoveHelp;
 		
 		public ChessMain()
 		{
@@ -90,6 +91,7 @@ namespace Chess
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.mnuNewGame = new System.Windows.Forms.MenuItem();
+            this.newDCGame = new System.Windows.Forms.MenuItem();
             this.mnuLoadGame = new System.Windows.Forms.MenuItem();
             this.mnuSaveGame = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
@@ -114,8 +116,8 @@ namespace Chess
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lstHistory = new System.Windows.Forms.ListView();
-            this.LstIndex = new System.Windows.Forms.ColumnHeader();
-            this.lstMove = new System.Windows.Forms.ColumnHeader();
+            this.LstIndex = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lstMove = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.WhitePlayerTime = new System.Windows.Forms.Label();
             this.BlackPlayerTime = new System.Windows.Forms.Label();
             this.WhitePlayerName = new System.Windows.Forms.Label();
@@ -124,10 +126,10 @@ namespace Chess
             this.BlackPlayerImage = new System.Windows.Forms.PictureBox();
             this.TurnTicker = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ChessCaptureBar = new Chess.CaptureBar();
             this.PnlComputerThinkStatus = new System.Windows.Forms.Panel();
             this.LblComuterThinkLabel = new System.Windows.Forms.Label();
             this.PrgComputerThinkDepth = new System.Windows.Forms.ProgressBar();
-            this.ChessCaptureBar = new Chess.CaptureBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.WhitePlayerImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BlackPlayerImage)).BeginInit();
@@ -148,6 +150,7 @@ namespace Chess
             this.menuItem1.Index = 0;
             this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuNewGame,
+            this.newDCGame,
             this.mnuLoadGame,
             this.mnuSaveGame,
             this.menuItem9,
@@ -161,28 +164,34 @@ namespace Chess
             this.mnuNewGame.Text = "&New";
             this.mnuNewGame.Click += new System.EventHandler(this.mnuNewGame_Click);
             // 
+            // newDCGame
+            // 
+            this.newDCGame.Index = 1;
+            this.newDCGame.Text = "New DC Heroes Game";
+            this.newDCGame.Click += new System.EventHandler(this.newDCGame_Click);
+            // 
             // mnuLoadGame
             // 
-            this.mnuLoadGame.Index = 1;
+            this.mnuLoadGame.Index = 2;
             this.mnuLoadGame.Text = "&Load Game";
             this.mnuLoadGame.Click += new System.EventHandler(this.mnuLoadGame_Click);
             // 
             // mnuSaveGame
             // 
             this.mnuSaveGame.Enabled = false;
-            this.mnuSaveGame.Index = 2;
+            this.mnuSaveGame.Index = 3;
             this.mnuSaveGame.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
             this.mnuSaveGame.Text = "&Save Game";
             this.mnuSaveGame.Click += new System.EventHandler(this.mnuSaveGame_Click);
             // 
             // menuItem9
             // 
-            this.menuItem9.Index = 3;
+            this.menuItem9.Index = 4;
             this.menuItem9.Text = "-";
             // 
             // mnuFileExit
             // 
-            this.mnuFileExit.Index = 4;
+            this.mnuFileExit.Index = 5;
             this.mnuFileExit.Text = "&Exit";
             this.mnuFileExit.Click += new System.EventHandler(this.mnuFileExit_Click);
             // 
@@ -425,6 +434,13 @@ namespace Chess
             this.panel2.Size = new System.Drawing.Size(695, 86);
             this.panel2.TabIndex = 1;
             // 
+            // ChessCaptureBar
+            // 
+            this.ChessCaptureBar.Location = new System.Drawing.Point(18, 16);
+            this.ChessCaptureBar.Name = "ChessCaptureBar";
+            this.ChessCaptureBar.Size = new System.Drawing.Size(660, 55);
+            this.ChessCaptureBar.TabIndex = 1;
+            // 
             // PnlComputerThinkStatus
             // 
             this.PnlComputerThinkStatus.BackColor = System.Drawing.Color.White;
@@ -450,13 +466,6 @@ namespace Chess
             this.PrgComputerThinkDepth.Name = "PrgComputerThinkDepth";
             this.PrgComputerThinkDepth.Size = new System.Drawing.Size(659, 24);
             this.PrgComputerThinkDepth.TabIndex = 0;
-            // 
-            // ChessCaptureBar
-            // 
-            this.ChessCaptureBar.Location = new System.Drawing.Point(18, 16);
-            this.ChessCaptureBar.Name = "ChessCaptureBar";
-            this.ChessCaptureBar.Size = new System.Drawing.Size(660, 55);
-            this.ChessCaptureBar.TabIndex = 1;
             // 
             // ChessMain
             // 
@@ -641,5 +650,18 @@ namespace Chess
         {
             GameObj.LoadGame();
         }
-	}
+
+        private void newDCGame_Click(object sender, EventArgs e)
+        {
+            GameObj.NewDCGame();  // Initialize the new game
+
+            // Initialize computer player characterstics
+            if (GameObj.ChessGame != null)
+            {
+                GameObj.ChessGame.DoNullMovePruning = mnCompNullMove.Checked;
+                GameObj.ChessGame.DoPrincipleVariation = mnuCompPrincipleVar.Checked;
+                GameObj.ChessGame.DoQuiescentSearch = mnuCompQuiescentSearch.Checked;
+            }
+        }
+    }
 }
