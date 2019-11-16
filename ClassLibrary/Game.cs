@@ -42,7 +42,7 @@ namespace ChessLibrary
 
 		public Game()
 		{
-			Board = new Board();
+			Board = new DCBoard();
 
 			m_Rules = new Rules(Board, this);	
 			m_MovesHistory = new Stack();
@@ -50,6 +50,16 @@ namespace ChessLibrary
             m_WhitePlayer = new Player(new Side(Side.SideType.White), Player.Type.Human, m_Rules);	// For the start both player are human
             m_BlackPlayer = new Player(new Side(Side.SideType.Black), Player.Type.Human, m_Rules);	// For the start both player are human
 		}
+
+        public void setBoard(Board board)
+        {
+            Board = board;
+
+            m_Rules = new Rules(Board, this);
+
+            m_WhitePlayer = new Player(new Side(Side.SideType.White), Player.Type.Human, m_Rules);	// For the start both player are human
+            m_BlackPlayer = new Player(new Side(Side.SideType.Black), Player.Type.Human, m_Rules);	// For the start both player are human
+        }
 
 		// Fire the computer thinking events to all the subscribers
 		public void NotifyComputerThinking(int depth, int currentMove, int TotalMoves, int TotalAnalzyed, Move BestMove)

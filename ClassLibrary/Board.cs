@@ -20,8 +20,8 @@ namespace ChessLibrary
     [Serializable]
 	public class Board
 	{
-		private Side m_WhiteSide, m_BlackSide;	// Chess board site object 
-		private Cells m_cells;	// collection of cells in the board
+		protected Side m_WhiteSide, m_BlackSide;	// Chess board site object 
+		protected Cells m_cells;	// collection of cells in the board
 
 		public Board()
 		{
@@ -32,7 +32,7 @@ namespace ChessLibrary
 		}
 
 		// Initialize the chess board and place piece on thier initial positions
-		public void Init()
+		public virtual void Init()
 		{
 			m_cells.Clear();		// Remove any existing chess cells
 
