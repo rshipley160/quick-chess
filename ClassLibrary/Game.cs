@@ -42,7 +42,7 @@ namespace ChessLibrary
 
 		public Game()
 		{
-			Board = new DCBoard();
+			Board = new Board();
 
 			m_Rules = new Rules(Board, this);	
 			m_MovesHistory = new Stack();
