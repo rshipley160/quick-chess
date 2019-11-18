@@ -36,18 +36,17 @@ namespace Chess
 		{
 			this.ParentForm = form;	// get and store reference of parent form
 
-			// Load all the chess images in a list
-			ChessImages = new Images();
-
             #if DEBUG
 			    ResourceFolder = "..\\..\\Resources\\";
             #else
                 ResourceFolder = "Resources\\";
             #endif
 
+            ChessImages = new Images();
+            ChessImages.LoadImages(ResourceFolder);
+
             // For Production Release
             ResourceFolder = "Resources\\";
-			ChessImages.LoadImages(ResourceFolder);
 			Sounds = new Sounds(ResourceFolder);	// create the sounds object for play sound
 			BuildBoard();
 			
@@ -440,7 +439,9 @@ namespace Chess
 		// Initialize a new game and set the pieces on the board
 		public void NewGame()
 		{
-			ParentForm.ChessCaptureBar.Clear();
+            ChessImages = new Images();
+            ChessImages.LoadImages(ResourceFolder);
+            ParentForm.ChessCaptureBar.Clear();
 			NewGame NewGameDlg = new NewGame();
             NewGameDlg.ResourceFolderPath = ResourceFolder;
 			NewGameDlg.ShowDialog();
@@ -506,6 +507,9 @@ namespace Chess
 
         public void NewDCGame()
         {
+
+            ChessImages = new DCImages();
+            ChessImages.LoadImages(ResourceFolder);
             ParentForm.ChessCaptureBar.Clear();
             NewGame NewGameDlg = new NewGame();
             NewGameDlg.ResourceFolderPath = ResourceFolder;

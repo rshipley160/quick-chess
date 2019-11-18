@@ -19,32 +19,32 @@ namespace Chess
 	/// </summary>
 	public class Images
 	{
-		private ArrayList m_ImageList;		// store list of image list
+        protected ArrayList m_ImageList;
 
 		public Images()
 		{
 			m_ImageList = new ArrayList();
 		}
 
-		public void LoadImages(string SourceDir)
+		public virtual void LoadImages(string SourceDir)
 		{
 
 			// Read and store the image black and white image paths
 			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"Black.jpg"));
 			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"White.jpg"));
 			// Read and store the white pieces images
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"batman.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"superman.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"green_lantern.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"shazam.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"flash.png"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"king.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"queen.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"bishop.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"knight.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"rook.gif"));
 			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"pawn.gif"));
 			// Read and store the black pieces images
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"joker.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"doomsday.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"riddler.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"poison_ivy.png"));
-			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"harley_quinn.png"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"king_2.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"queen_2.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"bishop_2.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"knight_2.gif"));
+			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"rook_2.gif"));
 			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"pawn_2.gif"));
 			// Read and store the image black and white image paths
 			m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir+"Black_2.jpg"));
