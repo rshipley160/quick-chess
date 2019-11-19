@@ -15,8 +15,8 @@ namespace ChessLibrary
 	/// </summary>
 	public class Rules
 	{
-		private Board m_Board;	// store a reference to the game board
-		private Game m_Game;	// store a reference to the current game
+		protected Board m_Board;	// store a reference to the game board
+		protected Game m_Game;	// store a reference to the current game
 
 		public Rules(Board board, Game game)
 		{
@@ -107,7 +107,7 @@ namespace ChessLibrary
 		}
 
 		// return type of the move given the move object
-		private void SetMoveType(Move move)
+		protected void SetMoveType(Move move)
 		{
 			// start with the normal move type
 			move.Type = Move.MoveType.NormalMove;
@@ -141,7 +141,7 @@ namespace ChessLibrary
 		}
 
 		// Do the normal move i.e. desitnation is empty; simply move the source piece
-		private void DoNormalMove(Move move)
+		protected void DoNormalMove(Move move)
 		{
 			m_Board[move.StartCell].piece.Moves++;	// incremenet moves
 			m_Board[move.EndCell].piece = m_Board[move.StartCell].piece;		// Move object at the destination
@@ -149,7 +149,7 @@ namespace ChessLibrary
 		}
 
 		// Do the castling/tower move. King interchanges it's position with it's rock
-		private void DoTowerMove(Move move)
+		protected void DoTowerMove(Move move)
 		{
 			DoNormalMove(move);	// move the king to target position
 
@@ -171,7 +171,7 @@ namespace ChessLibrary
 		}
 
 		// Do the pawn promotion move
-		private void DoPromoMove(Move move)
+		protected void DoPromoMove(Move move)
 		{
 			DoNormalMove(move);	// Do the normal move
 			// check if promo piece is already selected by the user
@@ -182,7 +182,7 @@ namespace ChessLibrary
 		}
 
 		// Do the EnPassant Move
-		private void DoEnPassantMove(Move move)
+		protected void DoEnPassantMove(Move move)
 		{
 			Cell EnPassantCell;
 
@@ -244,7 +244,7 @@ namespace ChessLibrary
 		}
 
 		// Undo the normal move i.e. desitnation was empty; simply moe the source piece back to it's orignal
-		private void UndoNormalMove(Move move)
+		protected void UndoNormalMove(Move move)
 		{
 			m_Board[move.EndCell].piece = move.CapturedPiece;		// Move object at the destination
 			m_Board[move.StartCell].piece = move.Piece;	// Empty the source location
@@ -280,7 +280,7 @@ namespace ChessLibrary
 		}
 
 		// Returns a count of all the possilbe moves for given side
-        private int GetCountOfPossibleMoves(Side.SideType PlayerSide)
+        protected int GetCountOfPossibleMoves(Side.SideType PlayerSide)
 		{
 			int TotalMoves=0;
            
@@ -295,7 +295,7 @@ namespace ChessLibrary
 		}
 
 		// Returns true if the give move place the user under check
-		private bool CauseCheck(Move move)
+		protected bool CauseCheck(Move move)
 		{
 			bool CauseCheck=false;
             Side.SideType PlayerSide = move.StartCell.piece.Side.type;
@@ -451,7 +451,7 @@ namespace ChessLibrary
 		}
 
 		// Returns true if the last move was a pawn begin move. It's used for En Passant move detection
-		private Move LastMoveWasPawnBegin()
+		protected Move LastMoveWasPawnBegin()
 		{
 			// Now get user last move and see if it's a pawn move
 			Move lastmove = m_Game.GetLastMove();
@@ -467,7 +467,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the pawn object and insert them into passed array
-		private void GetPawnMoves(Cell source, ArrayList moves)
+		protected virtual void GetPawnMoves(Cell source, ArrayList moves)
 		{
 			Cell newcell;
 
@@ -570,7 +570,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the knight piece and insert them into passed array
-		private void GetKnightMoves(Cell source, ArrayList moves)
+		protected virtual void GetKnightMoves(Cell source, ArrayList moves)
 		{
 			Cell newcell;
 
@@ -637,7 +637,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the Rook piece and insert them into passed array
-		private void GetRookMoves(Cell source, ArrayList moves)
+		protected virtual void GetRookMoves(Cell source, ArrayList moves)
 		{
 			Cell newcell;
 
@@ -719,7 +719,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the bishop piece and insert them into passed array
-		private void GetBishopMoves(Cell source, ArrayList moves)
+		protected virtual void GetBishopMoves(Cell source, ArrayList moves)
 		{
 			Cell newcell;
 
@@ -801,7 +801,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the queen piece and insert them into passed array
-		private void GetQueenMoves(Cell source, ArrayList moves)
+		protected virtual void GetQueenMoves(Cell source, ArrayList moves)
 		{
 			// Queen has moves combination of both bishop and rook moves
 			GetRookMoves(source, moves); // first get moves for the rook
@@ -809,7 +809,7 @@ namespace ChessLibrary
 		}
 
 		// calculate the possible moves for the king piece and insert them into passed array
-		private void GetKingMoves(Cell source, ArrayList moves)
+		protected virtual void GetKingMoves(Cell source, ArrayList moves)
 		{
 			Cell newcell;
 

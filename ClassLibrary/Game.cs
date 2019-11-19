@@ -51,11 +51,11 @@ namespace ChessLibrary
             m_BlackPlayer = new Player(new Side(Side.SideType.Black), Player.Type.Human, m_Rules);	// For the start both player are human
 		}
 
-        public void setBoard(Board board)
+        public void setupDCGame()
         {
-            Board = board;
+            Board = new DCBoard();
 
-            m_Rules = new Rules(Board, this);
+            m_Rules = new DCRules(Board, this);
 
             m_WhitePlayer = new Player(new Side(Side.SideType.White), Player.Type.Human, m_Rules);	// For the start both player are human
             m_BlackPlayer = new Player(new Side(Side.SideType.Black), Player.Type.Human, m_Rules);	// For the start both player are human
