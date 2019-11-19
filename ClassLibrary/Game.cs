@@ -40,6 +40,9 @@ namespace ChessLibrary
 		public bool DoPrincipleVariation;	// True when computer should use principle variation to optimize search
 		public bool DoQuiescentSearch;		// Return true when computer should do Queiscent search
 
+        public int blackCaptures = 0;
+        public int whiteCaptures = 0;
+
 		public Game()
 		{
 			Board = new Board();
@@ -342,6 +345,8 @@ namespace ChessLibrary
 			// check if it's user turn to play
             if (this.Board[source].piece != null && this.Board[source].piece.Type != Piece.PieceType.Empty && this.Board[source].piece.Side.type == GameTurn)
 			{
+                Cell m_source = this.Board[source];
+                Cell m_dest = this.Board[dest];
 				Move UserMove = new Move(this.Board[source], this.Board[dest]);	// create the move object
 				MoveResult=m_Rules.DoMove(UserMove);
 

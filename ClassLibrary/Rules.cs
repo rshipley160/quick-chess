@@ -86,6 +86,10 @@ namespace ChessLibrary
 			{
 				case Move.MoveType.CaputreMove:		// Capture move
 					DoNormalMove(move);
+                    if (m_Game.GameTurn == Side.SideType.White)
+                        m_Game.whiteCaptures++;
+                    else
+                        m_Game.blackCaptures++;
 					break;
 
 				case Move.MoveType.NormalMove:		// Normal move
@@ -107,7 +111,7 @@ namespace ChessLibrary
 		}
 
 		// return type of the move given the move object
-		protected void SetMoveType(Move move)
+		protected virtual void SetMoveType(Move move)
 		{
 			// start with the normal move type
 			move.Type = Move.MoveType.NormalMove;
