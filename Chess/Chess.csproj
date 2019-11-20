@@ -127,6 +127,7 @@
     <Compile Include="ChessMain.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DCImages.cs" />
     <Compile Include="GameUI.cs">
       <SubType>Code</SubType>
     </Compile>

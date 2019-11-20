@@ -519,7 +519,7 @@ namespace Chess
             if (NewGameDlg.bStartGame)
             {
                 ChessGame = new Game();
-                ChessGame.setBoard(new DCBoard());
+                ChessGame.setupDCGame();
 
                 // Handle the events fired by the library
                 ChessGame.ComputerThinking += new ChessLibrary.Game.ChessComputerThinking(ComputerThinking);

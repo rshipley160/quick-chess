@@ -130,9 +130,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                  
+                }
 				newcell = m_Board.TopCell(newcell); // keep moving in the top direction
 			}
 
@@ -149,9 +150,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                 
+                }
 				newcell = m_Board.LeftCell(newcell); // keep moving in the left direction
 			}
 
@@ -168,8 +170,9 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                }
 
 				newcell = m_Board.RightCell(newcell); // keep moving in the right direction
 			}
@@ -187,9 +190,9 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                }
 				newcell = m_Board.BottomCell(newcell); // keep moving in the bottom direction
 			}
 		}
@@ -212,9 +215,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                  
+                }
 				newcell = m_Board.TopLeftCell(newcell); // keep moving in the top-left direction
 			}
 
@@ -231,9 +235,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+             
+                }
 				newcell = m_Board.TopRightCell(newcell); // keep moving in the top-right direction
 			}
 
@@ -250,9 +255,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                     // force quite the loop execution
+                }
 				newcell = m_Board.BottomLeftCell(newcell); // keep moving in the bottom-left direction
 			}
 
@@ -269,9 +275,10 @@ namespace ChessLibrary
 					break;	// force quite the loop execution
 				}
 
-				if (newcell.IsOwned(source))	//next cell contains owner object
-					break;	// force quite the loop execution
-
+                if (newcell.IsOwned(source))
+                {   //next cell contains owner object
+                    // force quite the loop execution
+                }
 				newcell = m_Board.BottomRightCell(newcell); // keep moving in the bottom-right direction
 			}
 		}
@@ -282,6 +289,9 @@ namespace ChessLibrary
 			// Queen has moves combination of both bishop and rook moves
 			GetRookMoves(source, moves); // first get moves for the rook
 			GetBishopMoves(source, moves); // then get moves for the bishop
+            
+            
+
 		}
 
         protected override void GetKingMoves(Cell source, ArrayList moves)

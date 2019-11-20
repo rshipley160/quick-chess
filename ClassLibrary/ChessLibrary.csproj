@@ -125,6 +125,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DCBoard.cs" />
+    <Compile Include="DCRules.cs" />
     <Compile Include="Game.cs">
       <SubType>Code</SubType>
     </Compile>
