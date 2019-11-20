@@ -39,7 +39,7 @@ namespace Chess
             m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "pawn.gif"));
             // Read and store the black pieces images
             m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "joker.png"));
-            m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "doomsday.png"));
+            m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "bane.png"));
             m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "riddler.png"));
             m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "poison_ivy.png"));
             m_ImageList.Add(System.Drawing.Image.FromFile(SourceDir + "harley_quinn.png"));
