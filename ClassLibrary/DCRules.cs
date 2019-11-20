@@ -289,8 +289,6 @@ namespace ChessLibrary
             Cell newcell;
             int numCaptured = 0;
 
-            m_Game.blackCaptures = 7;
-
             if (source.piece.Side.isWhite())
                 numCaptured = m_Game.blackCaptures/2;
             else numCaptured = m_Game.whiteCaptures/2;
@@ -298,92 +296,148 @@ namespace ChessLibrary
 
             // check if king can move to top
             newcell = m_Board.TopCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.TopCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.TopCell(newcell); // keep moving in the top direction
             }
             // check if king can move to left
             newcell = m_Board.LeftCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.LeftCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.LeftCell(newcell); // keep moving in the top direction
             }
             // check if king can move to right
             newcell = m_Board.RightCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.RightCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.RightCell(newcell); // keep moving in the top direction
             }
 
             // check if king can move to bottom
             newcell = m_Board.BottomCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.BottomCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.BottomCell(newcell); // keep moving in the top direction
             }
             // check if king can move to top-left
             newcell = m_Board.TopLeftCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.TopLeftCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.TopLeftCell(newcell); // keep moving in the top direction
             }
             // check if king can move to top-right
             newcell = m_Board.TopRightCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.TopRightCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.TopRightCell(newcell); // keep moving in the top direction
             }
             // check if king can move to bottom-left
             newcell = m_Board.BottomLeftCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.BottomLeftCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.BottomLeftCell(newcell); // keep moving in the top direction
             }
             // check if king can move to bottom-right
             newcell = m_Board.BottomRightCell(source);
-            for (int i = 1; i <= numCaptured + 1; i++)
+            for (int i = 1; i <= numCaptured + 1 && newcell != null; i++)
             {
-                if (newcell != null && !newcell.IsOwned(source)) // target cell is empty or is owned by the enemy piece
-                {
+                if (newcell.IsEmpty())  //next cell is available for move
                     moves.Add(newcell);
-                    newcell = m_Board.BottomRightCell(newcell);
+
+                if (newcell.IsOwnedByEnemy(source)) //next cell is owned by the enemy object
+                {
+                    moves.Add(newcell); // Add this to available location
+                    break;  // force quite the loop execution
                 }
-                else break;
+
+                if (newcell.IsOwned(source))    //next cell contains owner object
+                    break;  // force quite the loop execution
+
+                newcell = m_Board.BottomRightCell(newcell); // keep moving in the top direction
             }
 
         }
